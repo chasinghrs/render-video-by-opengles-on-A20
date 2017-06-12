@@ -294,7 +294,7 @@ void Redraw(PlayCtx *playCtx)
 	if(playCtx->shmBuf->frameFlag != 0){
 		printVideoInfo(playCtx->shmBuf);
 		computeFps(2);
-
+		
 		//UpdateGLTextures();
 		redrawWindow(playCtx);
 		glFinish();
@@ -402,7 +402,7 @@ int main(int argc, char *argv[])
 //----------------------------------------------------------------------------------
 	playCtx.program = esLoadProgram ( vertex_shader_source, fragment_shader_source );
 	playCtx.hVertexLoc = glGetAttribLocation(playCtx.program, "g_vPosition");
-	playCtx.hVertexTexLoc = glGetAttribLocation(playCtx.program, "g_vColor");
+	playCtx.hVertexTexLoc = glGetAttribLocation(playCtx.program, "g_vTexCoord");
 //-----------------------------------------
 	//create mpv context
 	mpv_handle *ctx = mpv_create();
@@ -430,7 +430,7 @@ int main(int argc, char *argv[])
     	return -1;
     }
     if(argv[1] == NULL){
-    	printf("Usage: g2d-opengl-video-render videoFilePath");
+    	printf("Usage: g2d-opengl-video-render videoFilePath\n");
     	return -1;
     }
     // Play video file.
