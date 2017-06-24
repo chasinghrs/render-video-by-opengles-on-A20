@@ -1,0 +1,7 @@
+# render-video-by-opengles-on-A20
+
+在AllWinner的A20平台上，有一个奇怪的问题：播放1080P视频，将视频窗口拉到足够小，视频画面就被拉伸了，同时其他的窗口也被拉伸了。
+因此想到了使用OpenGles来渲染视频。
+
+具体思路就是拦截VDPAU解码后的数据，利用G2D转换格式到RGB并传送到指定的UMPbuffer里，在OpenGles里利用支持的一项扩展功能创建一个特殊的texture，
+并将此texture的数据绑定到指定的UMPbuffer里。这样就实现了全程硬件加速并且zero-copy的视频渲染。
